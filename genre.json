@@ -1,0 +1,32 @@
+[
+    {
+        "genreName": "action"
+    },
+    {
+        "genreName": "comedy"
+    },
+    {
+        "genreName": "drama"
+    },
+    {
+        "genreName": "game"
+    },
+    {
+        "genreName": "romance"
+    },
+    {
+        "genreName": "horor"
+    },
+    {
+        "genreName": "advanture"
+    },
+    {
+        "genreName": "fantasy"
+    },
+    {
+        "genreName": "mistry"
+    },
+    {
+        "genreName": "sport"
+    }
+]

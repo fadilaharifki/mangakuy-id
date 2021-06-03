@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head',{title : 'Register'})%>
+<body>
+    <%- include('partials/navbar')%>
+    <h2 style="text-align: center">Register Page</h2> <br>
+    <form action="/register" method="POST" style="text-align: center">
+        <label>Fullname</label> <br>
+        <input type="text" name="name"> <br>
+        <label>Username</label> <br>
+        <input type="text" name="username"> <br>
+        <label>Password</label> <br>
+        <input type="password" name="password"> <br>
+        <label>Email</label> <br>
+        <input type="text" name="email"> <br><br>
+        <!-- <label>Register As</label> <br>
+        <input type="radio" name="userType" value="customer">
+        <label for="userType">Customer  </label>
+        <input type="radio" name="userType" value="admin">
+        <label for="userType">Admin</label><br> -->
+        <button type="submit">Register</button>
+    </form>
+    <%- include('partials/script')%>
+</body>
+</html>

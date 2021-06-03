@@ -1,0 +1,58 @@
+[
+    {
+        "ComicId": 1,
+        "GenreId": 1
+    },
+    {
+        "ComicId": 2,
+        "GenreId": 1
+    },
+    {
+        "ComicId": 3,
+        "GenreId": 1
+    },
+    {
+        "ComicId": 4,
+        "GenreId": 1
+    },
+    {
+        "ComicId": 5,
+        "GenreId": 1
+    },
+    {
+        "ComicId": 1,
+        "GenreId": 2
+    },
+    {
+        "ComicId": 2,
+        "GenreId": 2
+    },
+    {
+        "ComicId": 3,
+        "GenreId": 2
+    },
+    {
+        "ComicId": 4,
+        "GenreId": 2
+    },
+    {
+        "ComicId": 5,
+        "GenreId": 2
+    },
+    {
+        "ComicId": 1,
+        "GenreId": 3
+    },
+    {
+        "ComicId": 2,
+        "GenreId": 3
+    },
+    {
+        "ComicId": 3,
+        "GenreId": 3
+    },
+    {
+        "ComicId": 11,
+        "GenreId": 3
+    }
+]

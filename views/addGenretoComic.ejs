@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include('partials/head',{title : 'add'})%>
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar')%>
+
+    <div class="container-fluid">
+        <%dataComic.forEach(e=>{%>
+        <div class="row">
+          <div class="col" style="background-color: rgb(60, 145, 194);">
+                <h1 style="text-align: center; color: white"><%= e.title %></h1>
+          </div>
+          <div class="col"  style="background-color: rgb(63, 175, 170);">
+            <form action="/comics/addgenre/<%= e.id %>" method="POST">
+                <h2>Add Genre</h2><br>
+                <label>Genre:</label><br>
+                <select name="GenreId">a
+                    <option>Choose Genre</option>
+                    <%dataGenre.forEach(el=>{%>
+                        <option value="<%=el.id%>"><%=el.genreName%></option>
+                    <%})%>
+                </select><br><br>
+                <button type="Submit">Save</button>
+                <button type="Submit">Cancel</button><br>
+              </form>
+          </div>
+        </div>
+        <%})%>
+      </div>
+    <!-- Script js -->
+    <%- include('partials/script')%>
+</body>
+</html>

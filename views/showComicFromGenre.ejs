@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include('partials/head',{title : 'Comic'})%>
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar')%>
+
+    <table class="table table-info">
+        <thead>
+          <tr>
+            <!-- <th scope="col">ID</th> -->
+            <th scope="col">Picture</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Publication Year</th>
+            <th scope="col">Post By</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <% data.forEach(e=>{%>
+            <tbody>
+              <tr>
+                <!-- <td><%= e.id%></td> -->
+                <td><img src="<%= e.Comic.picture %>" width="120" height="150"/><br><%=retingToStars(e.Comic.rating)%></td>
+                <td><%= e.Comic.title%></td>
+                <td><%= e.Comic.lowerCase()%></td>
+                <td><%= e.Comic.publicationYear %></td>
+                <td><%= e.Comic.postBy %></td>
+                <td><%= formatPrice(e.Comic.price) %></td> 
+                <td>
+                    <button type="submit"><a href="http://localhost:3000/comics/edit/<%= e.Comic.id %>">Edit</a></button>
+                    <button type="submit"><a href="http://localhost:3000/comics/delete/<%= e.Comic.id %>">Delete</a></button>
+                </td>
+              </tr>
+            </tbody>
+        <%})%>
+      </table>
+    <!-- Script js -->
+    <%- include('partials/script')%>
+</body>
+</html>

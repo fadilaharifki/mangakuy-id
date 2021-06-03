@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head',{title : 'Login'})%>
+<body>
+    <%- include('partials/navbar')%>
+    <h2 style="text-align: center;">Login Page</h2>
+    <form action="/login" method="POST" style="text-align: center;">
+        <label>Username</label> <br>
+        <input type="text" name="username"> <br>
+        <label>Password</label> <br>
+        <input type="password" name="password"> <br> <br>
+        <!-- <label>Login As</label> <br>
+        <input type="radio" name="userType" value="customer">
+        <label for="userType">Customer  </label>
+        <input type="radio" name="userType" value="admin">
+        <label for="userType">Admin</label><br><br> -->
+        <button type="submit">Login</button>
+        <button><a href="/register">Register</a></button>
+    </form>
+
+    <%- include('partials/script')%>
+</body>
+</html>
+

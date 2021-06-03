@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Head -->
+    <%- include('partials/head',{title : 'Genre'})%>
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar')%>
+    <button type="submit"><a href="http://localhost:3000/genres/add">Add</a></button>
+
+    <table class="table table-info">
+        <thead>
+          <tr>
+            <!-- <th scope="col">ID</th> -->
+            <th scope="col">Genre</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <% data.forEach(e=>{%>
+            <tbody>
+              <tr>
+                <!-- <td><%= e.id%></td> -->
+                <td><%= e.genreName%></td>
+                <td>
+                    <button type="submit"><a href="http://localhost:3000/genres/edit/<%= e.id %>">Edit</a></button>
+                    <button type="submit"><a href="http://localhost:3000/genres/delete/<%= e.id %>">Delete</a></button>
+                    <button type="submit"><a href="http://localhost:3000/genres/showComics/<%= e.id %>">Show Comics</a></button>
+                </td>
+              </tr>
+            </tbody>
+        <%})%>
+      </table>
+    <!-- Script js -->
+    <%- include('partials/script')%>
+</body>
+</html>
