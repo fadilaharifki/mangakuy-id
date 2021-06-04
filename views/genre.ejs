@@ -5,7 +5,7 @@
 <body>
     <!-- Navbar -->
     <%- include('partials/navbar')%>
-    <button type="submit"><a href="https://mangakuy-id.herokuapp.com//genres/add">Add</a></button>
+    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/genres/add">Add</a></button>
 
     <table class="table table-info">
         <thead>
@@ -21,9 +21,9 @@
                 <!-- <td><%= e.id%></td> -->
                 <td><%= e.genreName%></td>
                 <td>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com//genres/edit/<%= e.id %>">Edit</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com//genres/delete/<%= e.id %>">Delete</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com//genres/showComics/<%= e.id %>">Show Comics</a></button>
+                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/genres/edit/<%= e.id %>">Edit</a></button>
+                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/genres/delete/<%= e.id %>">Delete</a></button>
+                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/genres/showComics/<%= e.id %>">Show Comics</a></button>
                 </td>
               </tr>
             </tbody>
