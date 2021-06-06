@@ -52,6 +52,13 @@ class Controller {
             }
         })
         .then(()=>{
+            return ComicGenre.destroy({
+                where:{
+                    ComicId:id
+                }
+            })
+        })
+        .then(()=>{
             res.redirect('/genres')
         })
         .catch(err=>{
@@ -105,8 +112,7 @@ class Controller {
         })
         .then(data=>{
             let loginAdmin = req.session.loginAdmin
-            res.send(data)
-            // res.render('showComicFromGenre',{data,loginAdmin,retingToStars,formatPrice})
+            res.render('showComicFromGenre',{data,loginAdmin,retingToStars,formatPrice})
         })
         .catch(err=>{
             res.send(err)
