@@ -23,15 +23,15 @@
             <tbody>
               <tr>
                 <!-- <td><%= e.id%></td> -->
-                <td><img src="<%= e.picture %>" width="120" height="150"/><br><%=retingToStars(e.rating)%></td>
-                <td><%= e.title%></td>
-                <td><%= e.author%></td>
-                <td><%= e.publicationYear %></td>
-                <td><%= e.postBy %></td>
-                <td><%= formatPrice(e.price) %></td> 
+                <td><img src="<%= e.Comic.picture %>" width="120" height="150"/><br><%=retingToStars(e.Comic.rating)%></td>
+                <td><%= e.Comic.title%></td>
+                <td><%= e.Comic.lowerCase()%></td>
+                <td><%= e.Comic.publicationYear %></td>
+                <td><%= e.Comic.postBy %></td>
+                <td><%= formatPrice(e.Comic.price) %></td> 
                 <td>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/edit/<%= e.id %>">Edit</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/delete/<%= e.id %>">Delete</a></button>
+                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/edit/<%= e.Comic.id %>">Edit</a></button>
+                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/delete/<%= e.Comic.id %>">Delete</a></button>
                 </td>
               </tr>
             </tbody>
