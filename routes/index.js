@@ -12,7 +12,7 @@ const loginAdmin = require('../middlewares/loginAdmin')
 router.use('/login',loginRouter)             
 router.use('/register',registerRouter)             
 router.get('/', Controller.home)
-// router.use(loginAdmin)
+router.use(loginAdmin)
 
 router.use('/comics',comicRouter)
 router.use('/genres',genreRouter)
