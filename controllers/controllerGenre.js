@@ -52,13 +52,6 @@ class Controller {
             }
         })
         .then(()=>{
-            return ComicGenre.destroy({
-                where:{
-                    ComicId:id
-                }
-            })
-        })
-        .then(()=>{
             res.redirect('/genres')
         })
         .catch(err=>{

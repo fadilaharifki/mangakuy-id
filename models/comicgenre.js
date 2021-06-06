@@ -16,24 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   ComicGenre.init({
-    ComicId:{
-      type: DataTypes.INTEGER,
-      references:{
-        model: 'Comics',  
-        key:'id'
-      },
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
-    },
-    GenreId: {
-      type: DataTypes.INTEGER,
-      references:{
-        model: 'Genres',
-        key:'id'
-      },
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
-    },
+    ComicId: DataTypes.INTEGER,
+    GenreId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'ComicGenre',
