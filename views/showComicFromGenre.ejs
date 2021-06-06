@@ -9,8 +9,6 @@
     <table class="table table-info">
         <thead>
           <tr>
-            <!-- <th scope="col">ID</th> -->
-            <th scope="col">Picture</th>
             <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th scope="col">Publication Year</th>
@@ -22,8 +20,6 @@
         <% data.forEach(e=>{%>
             <tbody>
               <tr>
-                <!-- <td><%= e.id%></td> -->
-                <td><br><%=retingToStars(e.Comic.rating)%></td>
                 <td><%= e.Comic.title%></td>
                 <td><%= e.Comic.lowerCase()%></td>
                 <td><%= e.Comic.publicationYear %></td>
