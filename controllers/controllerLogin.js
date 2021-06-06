@@ -1,4 +1,5 @@
 const { Customer, Admin } = require("../models/index")
+const { comparePassword } = require('../helpers/passwordBcrypt')
 
 class Controller {
     static login(req, res) {
@@ -8,11 +9,11 @@ class Controller {
     }
     static loginPost(req, res) {
         const {username, password} = req.body
-        Admin.findAll({
-            where: {username, password}
+        Admin.findOne({
+            where: {username}
         })
         .then((data) => {
-            if (data.length) {
+            if (data && comparePassword(password, data.password)) {
                 req.session.loginAdmin = true
                 res.redirect('/comics')
             } else {

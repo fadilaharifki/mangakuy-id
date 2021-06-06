@@ -6,10 +6,13 @@
     <!-- Navbar -->
     <%- include('partials/navbar')%>
 
+     
+    
+    
     <table class="table table-info">
-        <thead>
-          <tr>
-            <!-- <th scope="col">ID</th> -->
+      <thead>
+        <tr>
+          <!-- <th scope="col">ID</th> -->
             <th scope="col">Picture</th>
             <th scope="col">Title</th>
             <th scope="col">Author</th>
@@ -19,6 +22,8 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
+        <% if (data.length) { %>
+          <h3>Genre : <%= data[0].Genre.genreName %></h3>                 
         <% data.forEach(e=>{%>
             <tbody>
               <tr>
@@ -30,12 +35,15 @@
                 <td><%= e.Comic.postBy %></td>
                 <td><%= formatPrice(e.Comic.price) %></td> 
                 <td>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/edit/<%= e.Comic.id %>">Edit</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/delete/<%= e.Comic.id %>">Delete</a></button>
+                    <button type="submit"><a href="/comics/edit/<%= e.Comic.id %>">Edit</a></button>
+                    <button type="submit"><a href="/comics/delete/<%= e.Comic.id %>">Delete</a></button>
                 </td>
               </tr>
             </tbody>
-        <%})%>
+        <% }) %>
+        <% } else { %>
+          <h3>There is no data</h3>  
+        <% } %>
       </table>
     <!-- Script js -->
     <%- include('partials/script')%>

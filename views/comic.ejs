@@ -5,7 +5,7 @@
 <body>
     <!-- Navbar -->
     <%- include('partials/navbar')%>
-    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/add">Add</a></button>
+    <button type="submit"><a href="/comics/add">Add Comic</a></button>
 
     <table class="table table-info">
         <thead>
@@ -13,6 +13,7 @@
             <!-- <th scope="col">ID</th> -->
             <th scope="col">Picture</th>
             <th scope="col">Title</th>
+            <th scope="col">Genre</th>
             <th scope="col">Author</th>
             <th scope="col">Publication Year</th>
             <th scope="col">Post By</th>
@@ -26,14 +27,16 @@
                 <!-- <td><%= e.id%></td> -->
                 <td><img src="<%= e.picture %>" width="120" height="150"/><br><%=retingToStars(e.rating)%></td>
                 <td><%= e.title%></td>
+                <td><% e.Genres.forEach(el => { %>
+                  <a href="/genres/showComics/<%= el.id %>"><%= el.genreName %></a>
+                <% }) %></td>
                 <td><%= e.lowerCase()%></td>
                 <td><%= e.publicationYear %></td>
                 <td><%= e.postBy %></td>
                 <td><%= formatPrice(e.price) %></td> 
                 <td>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/edit/<%= e.id %>">Edit</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/delete/<%= e.id %>">Delete</a></button>
-                    <button type="submit"><a href="https://mangakuy-id.herokuapp.com/comics/addgenre/<%= e.id %>">Add Genre</a></button>
+                    <button type="submit"><a href="/comics/edit/<%= e.id %>">Edit</a></button>
+                    <button type="submit"><a href="/comics/delete/<%= e.id %>">Delete</a></button>
                 </td>
               </tr>
             </tbody>

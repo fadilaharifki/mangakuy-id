@@ -20,9 +20,19 @@
           <label>Link:</label><br>
           <input type="text" name="picture" ><br>
           <label>Rating:</label><br>
-          <input type="integer" name="rating" ><br><br>
+          <input type="integer" name="rating" ><br>
+          <label>Genre:</label><br>
+          <% data.forEach((e, index) => { %>
+            <% if (index === 5) { %>
+              <br>
+            <% } %>
+            <input type="checkbox" id="<%= e.genreName %>" name="GenreId" value="<%= e.id %>">
+            <label for="<%= e.genreName %>"><%= e.genreName %></label>
+          <% }) %>
+           <br><br>
+
           <input type="submit" value="Save" style="background-color: green; border-radius: 5px; color: #ffffff;">
-          <button style="background-color: brown; border-radius: 5px;"><a style="color: #ffffff;" href="https://mangakuy-id.herokuapp.com/omics/add">Cencel</a></button>
+          <button style="background-color: brown; border-radius: 5px;"><a style="color: #ffffff;" href="/comics">Cancel</a></button>
         </fieldset>
       </form>
 

@@ -1,5 +1,6 @@
 const { Customer, Admin } = require("../models/index")
 const transporter = require("../nodemailer/registerMail")
+const { passwordHash } = require('../helpers/passwordBcrypt')
 
 class Controller {
     static register(req, res) {
@@ -9,13 +10,13 @@ class Controller {
     }
     static registerPost(req, res) {
         const {name, username, password, email, userType} = req.body
-        Admin.create({name, username, password, email})
+        Admin.create({name, username, password:passwordHash(password), email})
         .then(() => {
             const options = {
                 from: 'test87263871263@outlook.com',
                 to: email,
                 subject: 'Register',
-                text: `Selamat ${username} telah register di mangakuy`
+                text: `Halo ${name}. Selamat ${username} telah register di mangakuy`
             }
             transporter.sendMail(options, (err, info) => {
                 if (err) {

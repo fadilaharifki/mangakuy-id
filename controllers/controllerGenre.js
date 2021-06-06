@@ -98,12 +98,13 @@ class Controller {
     static showComicFromGenre(req,res){
         let id = req.params.id
         ComicGenre.findAll({
-            include:[Comic],
+            include:[Comic,Genre],
             where:{
                 GenreId:id
             }
         })
         .then(data=>{
+            console.log(data);
             let loginAdmin = req.session.loginAdmin
             res.render('showComicFromGenre',{data,loginAdmin,retingToStars,formatPrice})
         })

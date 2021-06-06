@@ -5,7 +5,10 @@ const formatPrice = require('../helpers/formatPrice')
 class Controller {
     static showComic(req,res){
         let loginAdmin = req.session.loginAdmin
-        Comic.findAll()
+        Comic.findAll({
+            include: [Genre],
+            order: [['id', 'ASC']]
+        })
         .then(data=>{
             res.render('comic',{data,retingToStars,formatPrice,loginAdmin})
         })
@@ -16,26 +19,31 @@ class Controller {
 
     static showPageAdd(req,res){
         let loginAdmin = req.session.loginAdmin
-        Comic.findAll()
+        Genre.findAll()
         .then(data=>{
-            res.render('addComic',{msg:undefined, loginAdmin})
+            res.render('addComic',{msg:undefined, loginAdmin, data})
         })
         .catch(err=>{
             res.send(err)
         })
     }
     static postAdd(req,res){
-        let {title,author,publicationYear,postBy,price,picture,rating} = req.body
-        Comic.create({
-            title:title,
-            author:author,
-            publicationYear:publicationYear,
-            postBy:postBy,
-            price:price,
-            picture:picture,
-            rating:rating
+        let {title,author,publicationYear,price,picture,rating,GenreId} = req.body
+        let ComicId;
+        if (!Array.isArray(GenreId)) GenreId = [GenreId]
+        console.log({GenreId}, '<<<<<<<<<<<<<<<<<<<<<');
+        Comic.create({title,author,publicationYear,price,picture,rating})
+        .then(() => {
+            return Comic.findAll({
+                limit: 1,
+                order: [ [ 'createdAt', 'DESC' ]]
+            })
         })
-        .then(()=>{
+        .then(data => {
+            ComicId = data[0].id
+            GenreId.forEach(e => {
+                ComicGenre.create({GenreId:+e, ComicId})
+            })
             res.redirect('/comics')
         })
         .catch(err=>{
@@ -66,83 +74,59 @@ class Controller {
     }
 
     static editComic(req,res){
-        let id = req.params.id
+        let id = +req.params.id
         let loginAdmin = req.session.loginAdmin
-        Comic.findAll({
-            where:{
-                id:id
-            }
+        let dataComic;
+        Comic.findByPk(id, {
+            include: Genre
         })
         .then(data=>{
-            res.render('editComic',{data, loginAdmin})
+            dataComic = data
+            return Genre.findAll()
+        })
+        .then(dataGenre => {
+            res.render('editComic',{dataComic, loginAdmin, dataGenre})
         })
         .catch(err=>{
             res.send(err)
         })
     }
-
 
     static posteditComic(req,res){
         let id = req.params.id
-        let {title,author,publicationYear,postBy,price,picture,rating} = req.body
-       
-        Comic.update({
-            title:title,
-            author:author,
-            publicationYear:publicationYear,
-            postBy:postBy,
-            price:price,
-            picture:picture,
-            rating:rating
-        },{
+        let {title,author,publicationYear,postBy,price,picture,rating, GenreId} = req.body
+        if (!Array.isArray(GenreId)) GenreId = [GenreId]
+        Comic.update({title,author,publicationYear,postBy,price,picture,rating},{
             where:{
                 id:id
-            }
+            },
         })
         .then(()=>{
+            return Comic.findByPk(id, {
+                include: Genre
+        })
+        .then(dataComic => {
+            dataComic.Genres.forEach(e => {
+                ComicGenre.destroy({
+                    where: {
+                        GenreId: e.id,
+                        ComicId: dataComic.id
+                    }
+                })
+            })
+            GenreId.forEach(e => {
+                ComicGenre.create({GenreId:+e, ComicId:dataComic.id})
+            })
             res.redirect('/comics')
         })
         .catch(err=>{
             res.send(err)
         })
-    }
 
-    static addGenre(req,res){
-        let loginAdmin = req.session.loginAdmin
-        let id= req.params.id
-        let dataComic;
-        Comic.findAll({
-            where:{
-                id:id
-            }
-        })
-        .then((data)=>{
-            dataComic = data
-        })
-
-        .then(()=>{
-            return Genre.findAll()
-        })
-
-        .then((dataGenre)=>{
-            res.render('addGenretoComic',{dataGenre,dataComic,loginAdmin})
-        })
-        .catch(err=>{
-            res.send(err)
         })
     }
 
-    static postAddGenre(req,res){
-        let ComicId = req.params.id
-        let {GenreId} = req.body
-        ComicGenre.create({ComicId,GenreId})
-        .then(()=>{
-            res.redirect('/comics')
-        })
-        .catch(err=>{
-           res.send(err)
-        })
-    }
 }
 
 module.exports = Controller
+

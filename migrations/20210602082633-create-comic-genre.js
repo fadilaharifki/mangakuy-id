@@ -10,21 +10,21 @@ module.exports = {
       },
       ComicId: {
         type: Sequelize.INTEGER,
-        references:{
-          model: 'Comics',  
-          key:'id'
+        references: {
+          model: 'Comics',
+          key: 'id'
         },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       GenreId: {
         type: Sequelize.INTEGER,
-        references:{
-          model: 'Genres',  
-          key:'id'
+        references: {
+          model: 'Genres',
+          key: 'id'
         },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
